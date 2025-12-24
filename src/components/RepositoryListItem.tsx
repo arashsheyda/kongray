@@ -1,4 +1,4 @@
-import { List, Action, ActionPanel, Icon, openExtensionPreferences, Image } from '@raycast/api'
+import { List, Action, ActionPanel, Icon, openExtensionPreferences, Image, Color } from '@raycast/api'
 import type { GithubRepository } from '../types'
 
 export default function RepositoryListItem({ repo }: { repo: GithubRepository }) {
@@ -14,8 +14,8 @@ export default function RepositoryListItem({ repo }: { repo: GithubRepository })
           { icon: Icon.Calendar, tooltip: `Last Updated: ${new Date(repo.updated_at).toLocaleString()}` },
           { text: `${repo.stargazers_count}`, tooltip: 'Stars', icon: Icon.Star },
           repo.private
-            ? { icon: Icon.Lock, tooltip: 'Private Repository' }
-            : { icon: Icon.LockUnlocked, tooltip: 'Public Repository' },
+            ? { icon: { source: Icon.Lock, tintColor: Color.Blue }, tooltip: 'Private Repository' }
+            : { icon: { source: Icon.LockUnlocked, tintColor: Color.Green }, tooltip: 'Public Repository' },
         ].filter(Boolean) as List.Item.Accessory[]
       }
       actions={
