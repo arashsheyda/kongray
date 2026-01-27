@@ -42,11 +42,23 @@ The extension is located in the `raycast-extension` directory.
 
 To access private repositories and increase API rate limits:
 
-1. Go to [GitHub Settings > Developer settings > Personal access tokens](https://github.com/settings/tokens)
+1. Go to [GitHub Settings > Developer settings > Personal access tokens > Tokens (classic)](https://github.com/settings/tokens)
 2. Click "Generate new token (classic)"
-3. Give it a name like "Raycast Extension"
-4. Select the `repo` scope (full control of private repositories)
-5. Generate the token and copy it
+3. Give it a descriptive name like "Raycast Kong Extension"
+4. Select the `repo` scope, this grants:
+   - Full control of private repositories (read access)
+   - Access to repository metadata
+   - Read access to organization repositories
+5. Set an appropriate expiration date (recommended: 90 days or less for security)
+6. Click "Generate token" at the bottom
+7. **Important**: Copy the token immediately - you won't be able to see it again!
+8. **For SSO-enabled organizations**: After creating the token, you must authorize it for each organization:
+   - Go to [Personal Access Tokens](https://github.com/settings/tokens)
+   - Click on your newly created token
+   - Under "Configure SSO", click **Authorize** next to each organization you want to search
+   - This step is required for accessing repositories in organizations with SAML SSO enabled
+
+**Security Note**: This extension only requires read access. The token validation will reject tokens with dangerous write/admin scopes like `delete_repo`, `workflow`, `admin:org`, or `write:repo_hook`.
 
 ### 3. Add Organizations
 
@@ -80,7 +92,12 @@ Search for repositories by name, description, or language!
 The extension uses GitHub's REST API v3. Authentication is optional but recommended:
 
 - **Without token**: Limited to public repositories, 60 requests/hour
-- **With token**: Access to private repositories, 5,000 requests/hour
+- **With token (classic PAT)**: Access to private repositories, 5,000 requests/hour
+
+### Token Requirements
+- Must be a **Personal Access Token (classic)**
+- Required scope: `repo` (for private repository access)
+- Token will be validated for security - tokens with dangerous write/admin scopes will be rejected
 
 ## Example Queries
 
@@ -110,5 +127,7 @@ The extension caches results, so repeated searches are instant.
 - Wait an hour for the limit to reset
 
 ### Can't access private repositories
-- Ensure your token has `repo` scope
+- Ensure your token is a **Personal Access Token (classic)** with `repo` scope
+- **For SSO organizations**: Make sure you've authorized the token for SSO access to each organization (see step 8 in setup)
 - Token might have expired (regenerate if needed)
+- Check that you have access to the organizations you're searching
