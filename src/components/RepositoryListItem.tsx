@@ -1,7 +1,56 @@
-import { List, Action, ActionPanel, Icon, openExtensionPreferences, Image, Color } from '@raycast/api'
+import {
+  List,
+  Action,
+  ActionPanel,
+  Icon,
+  openExtensionPreferences,
+  Image,
+  Color,
+  showToast,
+  Toast,
+  open,
+} from '@raycast/api'
+import { homedir } from 'os'
+import { join } from 'path'
+import { exec } from 'child_process'
+import { promisify } from 'util'
 import type { RepositoryListItemProps } from '../types'
 
-export default function RepositoryListItem({ repo, isBookmarked, onToggleBookmark }: RepositoryListItemProps) {
+const execAsync = promisify(exec)
+
+export default function RepositoryListItem({ repo, isBookmarked, onToggleBookmark, cloneDirectory }: RepositoryListItemProps) {
+  const handleClone = async () => {
+    const toast = await showToast({
+      style: Toast.Style.Animated,
+      title: 'Cloning repository...',
+    })
+
+    try {
+      // Use user's preference or default to ~/Developer
+      const baseDir = cloneDirectory || '~/Developer'
+      const cloneDir = baseDir.startsWith('~') ? join(homedir(), baseDir.slice(2)) : baseDir
+      const repoPath = join(cloneDir, repo.name)
+
+      // Clone the repository
+      await execAsync(`git clone ${repo.clone_url} "${repoPath}"`)
+
+      toast.style = Toast.Style.Success
+      toast.title = 'Repository cloned successfully'
+      toast.message = `Cloned to ${repoPath}`
+      toast.primaryAction = {
+        title: 'Open in Finder',
+        onAction: () => open(repoPath),
+      }
+      toast.secondaryAction = {
+        title: 'Open in Terminal',
+        onAction: () => open(repoPath, 'Terminal'),
+      }
+    } catch (error) {
+      toast.style = Toast.Style.Failure
+      toast.title = 'Failed to clone repository'
+      toast.message = error instanceof Error ? error.message : 'Unknown error'
+    }
+  }
   return (
     <List.Item
       key={repo.id}
@@ -23,7 +72,14 @@ export default function RepositoryListItem({ repo, isBookmarked, onToggleBookmar
         <ActionPanel>
           <ActionPanel.Section>
             <Action.OpenInBrowser url={repo.html_url} title="Open in Browser" />
+            <Action
+              title="Clone Repository"
+              icon={Icon.Download}
+              onAction={handleClone}
+              shortcut={{ modifiers: ['cmd'], key: 'd' }}
+            />
             <Action.CopyToClipboard content={repo.html_url} title="Copy URL" />
+            <Action.CopyToClipboard content={repo.clone_url} title="Copy Clone URL" shortcut={{ modifiers: ['cmd', 'shift'], key: 'c' }} />
             <Action
               title={isBookmarked ? 'Remove Bookmark' : 'Add Bookmark'}
               icon={isBookmarked ? Icon.StarDisabled : Icon.Star}

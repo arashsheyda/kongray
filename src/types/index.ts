@@ -3,12 +3,14 @@
 export interface PreferencesState {
   githubToken: string
   organizations: string
+  cloneDirectory?: string
 }
 
 export interface RepositoryListItemProps {
   repo: GithubRepository
   isBookmarked: boolean
   onToggleBookmark: (repoId: number) => void
+  cloneDirectory?: string
 }
 
 // auto-generated from GitHub API response

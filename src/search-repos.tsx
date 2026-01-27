@@ -106,6 +106,7 @@ export default function SearchRepositories() {
             repo={repo}
             isBookmarked={bookmarkedRepos.has(repo.id)}
             onToggleBookmark={toggleBookmark}
+            cloneDirectory={preferences.cloneDirectory}
           />
         ))
       )}

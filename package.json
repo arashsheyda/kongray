@@ -39,6 +39,14 @@
       "type": "textfield",
       "default": "kong, kong-konnect",
       "required": true
+    },
+    {
+      "name": "cloneDirectory",
+      "title": "Clone Directory",
+      "description": "Directory where repositories will be cloned (default: ~/Developer)",
+      "type": "textfield",
+      "default": "~/Developer",
+      "required": false
     }
   ],
   "scripts": {
