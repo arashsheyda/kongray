@@ -2,32 +2,82 @@
 
 Search repositories across multiple GitHub organizations directly from Raycast.
 
+- [Screenshots](#screenshots)
+- [Features](#features)
+- [Setup](#setup)
+  - [1. Install the Extension](#1-install-the-extension)
+  - [2. Configure GitHub Token (Optional but Recommended)](#2-configure-github-token-optional-but-recommended)
+  - [3. Add Organizations](#3-add-organizations)
+  - [4. Start Searching](#4-start-searching)
+- [Usage](#usage)
+- [Keyboard Shortcuts](#keyboard-shortcuts)
+- [Authentication](#authentication)
+- [Example Queries](#example-queries)
+- [Rate Limiting](#rate-limiting)
+- [Troubleshooting](#troubleshooting)
+
 ## Screenshots
 
 <table>
   <tr>
-    <td><img src="docs/raycast-commands-page.png" alt="Raycast Commands" /></td>
-    <td><img src="docs/welcome-page.png" alt="Welcome Page" /></td>
+    <td align="center">
+      <img src="assets/icon.png" alt="RepoJet Icon" /><br/>
+      <em>RepoJet</em>
+    </td>
+    <td align="center">
+      <img src="docs/raycast-commands-page.png" alt="Raycast Commands" /><br/>
+      <em>Finding the extension in Raycast</em>
+    </td>
   </tr>
   <tr>
-    <td><img src="docs/welcome-setup-page.png" alt="Welcome Setup Page" /></td>
-    <td><img src="docs/repo-list-page.png" alt="Repository List" /></td>
+    <td align="center">
+      <img src="docs/welcome-page.png" alt="Welcome Page" /><br/>
+      <em>Initial setup prompt when first launching</em>
+    </td>
+    <td align="center">
+      <img src="docs/welcome-setup-page.png" alt="Welcome Setup Page" /><br/>
+      <em>Configuration form with GitHub token, organizations, and clone directory</em>
+    </td>
   </tr>
   <tr>
-    <td><img src="docs/repo-list-searched-page.png" alt="Search Results" /></td>
-    <td><img src="docs/repo-list-page-bookmarked.png" alt="Bookmarked Repositories" /></td>
+    <td align="center">
+      <img src="docs/repo-list-page.png" alt="Repository List" /><br/>
+      <em>Browse all repositories across your organizations</em>
+    </td>
+    <td align="center">
+      <img src="docs/repo-list-searched-page.png" alt="Search Results" /><br/>
+      <em>Real-time search filtering repositories</em>
+    </td>
   </tr>
   <tr>
-    <td><img src="docs/repo-list-actions.png" alt="Repository Actions" /></td>
-    <td><img src="docs/repo-list-cloned.png" alt="Clone Repository" /></td>
+    <td align="center">
+      <img src="docs/repo-list-page-bookmarked.png" alt="Bookmarked Repositories" /><br/>
+      <em>Bookmarked repositories appear at the top with a yellow star</em>
+    </td>
+    <td align="center">
+      <img src="docs/repo-list-actions.png" alt="Repository Actions" /><br/>
+      <em>Available actions: open in browser, clone, copy URLs, and bookmark</em>
+    </td>
   </tr>
   <tr>
-    <td><img src="docs/invalid-token-page.png" alt="Invalid Token Page" /></td>
-    <td><img src="docs/not-result.png" alt="No Results" /></td>
+    <td align="center">
+      <img src="docs/repo-list-cloned.png" alt="Clone Repository" /><br/>
+      <em>Success notification after cloning with quick access options</em>
+    </td>
+    <td align="center">
+      <img src="docs/invalid-token-page.png" alt="Invalid Token Page" /><br/>
+      <em>Token validation error with helpful troubleshooting info</em>
+    </td>
   </tr>
   <tr>
-    <td><img src="docs/error-page.png" alt="Error Page" /></td>
-    <td><img src="assets/icon.png" alt="RepoJet Icon" /></td>
+    <td align="center">
+      <img src="docs/not-result.png" alt="No Results" /><br/>
+      <em>Empty state when no repositories match your search</em>
+    </td>
+    <td align="center">
+      <img src="docs/error-page.png" alt="Error Page" /><br/>
+      <em>Error state with guidance on resolving issues</em>
+    </td>
   </tr>
 </table>
 
