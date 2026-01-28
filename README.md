@@ -21,7 +21,7 @@ Search repositories across multiple GitHub organizations directly from Raycast.
 <table>
   <tr>
     <td align="center" style="background-color: #23272D;">
-      <img src="assets/icon.png" alt="RepoJet Icon" height="400" /><br/>
+      <img src="https://raw.githubusercontent.com/arashsheyda/repojet/main/assets/icon.png" alt="RepoJet Icon" height="125px" style="max-height: 125px;" /><br/>
       <em>RepoJet</em>
     </td>
     <td align="center" style="background-color: #23272D;">
