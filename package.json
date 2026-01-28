@@ -2,7 +2,7 @@
   "$schema": "https://www.raycast.com/schemas/extension.json",
   "name": "repojet",
   "title": "RepoJet",
-  "description": "Search Kong repositories across GitHub organizations from Raycast",
+  "description": "Search repositories across multiple GitHub organizations directly from Raycast.",
   "icon": "icon.png",
   "author": "arashsheyda",
   "owner": "konghq",
