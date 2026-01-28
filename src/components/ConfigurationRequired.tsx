@@ -1,30 +1,33 @@
-import { Detail, Icon, Color } from '@raycast/api'
+import { Detail, Icon, Color } from "@raycast/api";
 
 interface ConfigurationRequiredProps {
-  missingToken: boolean
-  missingOrganizations: boolean
+  missingToken: boolean;
+  missingOrganizations: boolean;
 }
 
-export default function ConfigurationRequired({ missingToken, missingOrganizations }: ConfigurationRequiredProps) {
-  const steps: string[] = []
+export default function ConfigurationRequired({
+  missingToken,
+  missingOrganizations,
+}: ConfigurationRequiredProps) {
+  const steps: string[] = [];
 
   if (missingToken) {
     steps.push(
-      '1. **Add GitHub Token**: Go to [GitHub Settings → Personal Access Tokens](https://github.com/settings/tokens) and create a new token with `repo` scope (read-only access).',
-    )
+      "1. **Add GitHub Token**: Go to [GitHub Settings → Personal Access Tokens](https://github.com/settings/tokens) and create a new token with `repo` scope (read-only access).",
+    );
   }
 
   if (missingOrganizations) {
     steps.push(
-      `${missingToken ? '2' : '1'}. **Add Organizations**: Enter the organization names you want to search (comma-separated).`,
-    )
+      `${missingToken ? "2" : "1"}. **Add Organizations**: Enter the organization names you want to search (comma-separated).`,
+    );
   }
 
   return (
     <Detail
       markdown={`# 🔧 Configuration Required
 
-${steps.join('\n\n')}
+${steps.join("\n\n")}
 
 ---
 
@@ -42,12 +45,19 @@ Once configured, you'll be able to search repositories across your organizations
             icon={{ source: Icon.Warning, tintColor: Color.Orange }}
           />
           {missingToken && (
-            <Detail.Metadata.Link title="GitHub Tokens" target="https://github.com/settings/tokens" text="Create Token" />
+            <Detail.Metadata.Link
+              title="GitHub Tokens"
+              target="https://github.com/settings/tokens"
+              text="Create Token"
+            />
           )}
           <Detail.Metadata.Separator />
-          <Detail.Metadata.Label title="Required Scope" text="repo (read-only)" />
+          <Detail.Metadata.Label
+            title="Required Scope"
+            text="repo (read-only)"
+          />
         </Detail.Metadata>
       }
     />
-  )
+  );
 }

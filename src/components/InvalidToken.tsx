@@ -1,7 +1,7 @@
-import { Detail, Icon, Color } from '@raycast/api'
+import { Detail, Icon, Color } from "@raycast/api";
 
 interface InvalidTokenProps {
-  scopes?: string[]
+  scopes?: string[];
 }
 
 export default function InvalidToken({ scopes }: InvalidTokenProps) {
@@ -35,15 +35,27 @@ Your token may have one or more of these dangerous scopes: \`delete_repo\`, \`wo
             text="Token Has Excessive Permissions"
             icon={{ source: Icon.XMarkCircle, tintColor: Color.Red }}
           />
-          <Detail.Metadata.Link title="GitHub Tokens" target="https://github.com/settings/tokens" text="Create New Token" />
+          <Detail.Metadata.Link
+            title="GitHub Tokens"
+            target="https://github.com/settings/tokens"
+            text="Create New Token"
+          />
           <Detail.Metadata.Separator />
-          <Detail.Metadata.Label title="Required Scope" text="repo (read-only)" icon={Icon.Check} />
+          <Detail.Metadata.Label
+            title="Required Scope"
+            text="repo (read-only)"
+            icon={Icon.Check}
+          />
           {scopes && scopes.length > 0 && (
             <>
               <Detail.Metadata.Separator />
               <Detail.Metadata.TagList title="Current Scopes">
                 {scopes.map((scope) => (
-                  <Detail.Metadata.TagList.Item key={scope} text={scope} color={Color.Orange} />
+                  <Detail.Metadata.TagList.Item
+                    key={scope}
+                    text={scope}
+                    color={Color.Orange}
+                  />
                 ))}
               </Detail.Metadata.TagList>
             </>
@@ -51,5 +63,5 @@ Your token may have one or more of these dangerous scopes: \`delete_repo\`, \`wo
         </Detail.Metadata>
       }
     />
-  )
+  );
 }

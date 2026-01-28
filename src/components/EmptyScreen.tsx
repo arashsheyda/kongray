@@ -1,11 +1,14 @@
-import { List, Icon, Color } from '@raycast/api'
+import { List, Icon, Color } from "@raycast/api";
 
 interface EmptyScreenProps {
-  error?: Error
-  hasSearchText?: boolean
+  error?: Error;
+  hasSearchText?: boolean;
 }
 
-export default function EmptyScreen({ error, hasSearchText }: EmptyScreenProps) {
+export default function EmptyScreen({
+  error,
+  hasSearchText,
+}: EmptyScreenProps) {
   if (error) {
     return (
       <List.EmptyView
@@ -13,7 +16,7 @@ export default function EmptyScreen({ error, hasSearchText }: EmptyScreenProps) 
         description={`Something went wrong: ${error.message}\n\nPlease check your GitHub token and organization settings, or try again later.`}
         icon={{ source: Icon.ExclamationMark, tintColor: Color.Red }}
       />
-    )
+    );
   }
 
   if (hasSearchText) {
@@ -23,7 +26,7 @@ export default function EmptyScreen({ error, hasSearchText }: EmptyScreenProps) 
         description="Try adjusting your search terms or check if the repositories exist in your configured organizations."
         icon={{ source: Icon.MagnifyingGlass, tintColor: Color.SecondaryText }}
       />
-    )
+    );
   }
 
   return (
@@ -32,5 +35,5 @@ export default function EmptyScreen({ error, hasSearchText }: EmptyScreenProps) 
       description="Enter a repository name or keyword to search across your GitHub organizations."
       icon={{ source: Icon.Stars, tintColor: Color.Blue }}
     />
-  )
+  );
 }
